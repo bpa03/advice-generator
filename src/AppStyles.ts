@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -23,6 +23,17 @@ const GlobalStyles = createGlobalStyle`
     margin:0;
     padding:0;
   }
+
+  body {
+    background-color: var(--dark-blue);
+  }
 `;
+
+export const Container = styled.main`
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 export default GlobalStyles;

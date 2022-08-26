@@ -1,13 +1,16 @@
-import { FC, Fragment } from 'react';
+import { FC } from 'react';
+
+// Components
+import AdviceCard from '@/components/AdviceCard';
 
 // GlobalStyles
-import GlobalStyles from '@/AppStyles';
+import GlobalStyles, {Container} from '@/AppStyles';
 
 const App: FC = () => (
-  <Fragment>
-    <h1>Advice Generator</h1>
+  <Container>
+    <AdviceCard />
     <GlobalStyles />
-  </Fragment>
+  </Container>
 );
 
 export default App;
