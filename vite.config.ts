@@ -14,7 +14,7 @@ const AssetsPath: Alias = {
   replacement: path.resolve(__dirname, './src/assets'),
 };
 
-Paths.push(AppPath);
+Paths.push(AppPath, AssetsPath);
 
 // https://vitejs.dev/config/
 export default defineConfig({
