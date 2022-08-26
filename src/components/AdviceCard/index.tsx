@@ -1,41 +1,8 @@
-import { FC, useState, useEffect } from 'react';
-import AdviceService, { AdviceType } from '@/services/advice';
-
-interface State {
-  loading: boolean;
-  error: Error | null;
-  data: AdviceType | null;
-}
+import { FC } from 'react';
+import useRandomAdvice from '@/hooks/useRandomAdvice';
 
 const AdviceCard: FC = () => {
-  const [{ data, loading }, setValues] = useState<State>({
-    data: null,
-    loading: false,
-    error: null,
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setValues((prevState) => ({
-        ...prevState,
-        loading: true,
-      }));
-
-      try {
-        const data = await AdviceService.getRandomAdvice();
-        setValues((prevState) => ({
-          ...prevState,
-          loading: false,
-          data,
-        }));
-        console.log(data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const [{ data, loading }] = useRandomAdvice();
 
   if (loading || !data) {
     return <h1>Loading</h1>;
