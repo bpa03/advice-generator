@@ -1,3 +1,5 @@
+import getRandomNumber from '@/helpers/getRandomNumber';
+
 interface AdviceService {
   readonly API_URL: string;
 }
@@ -6,7 +8,7 @@ export interface AdviceType {
   slip: SlipType;
 }
 
-export interface SlipType{
+export interface SlipType {
   id:     number;
   advice: string;
 }
@@ -19,13 +21,18 @@ class Advice implements AdviceService {
   }
 
   async getRandomAdvice(): Promise<AdviceType> {
-    const request: Request = new Request(this.API_URL, {
+    const randomNumber = getRandomNumber(0, 224);
+    const url = this.API_URL + '/' + randomNumber;
+    const request: Request = new Request(url, {
       method: 'GET',
       credentials: 'omit',
       mode: 'cors',
     });
     const response = await fetch(request);
     const data: AdviceType = await response.json();
+    if (!data.slip) {
+      return await this.getRandomAdvice();
+    }
     return data;
   }
 }
