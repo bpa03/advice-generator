@@ -4,6 +4,7 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --cyan: hsl(93, 38%, 86%);
     --green: hsl(150, 100%, 66%);
+    --white: #CEE3E9;
     --grayish-blue: hsl(217, 19%, 38%);
     --dark-grayish-blue: hsl(217, 19%, 24%);
     --dark-blue: hsl(218, 23%, 16%);
@@ -27,6 +28,12 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: var(--dark-blue);
   }
+
+  button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
 `;
 
 export const Container = styled.main`
@@ -34,6 +41,6 @@ export const Container = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export default GlobalStyles;

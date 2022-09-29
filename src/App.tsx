@@ -4,12 +4,12 @@ import { FC } from 'react';
 import AdviceCard from '@/components/AdviceCard';
 
 // GlobalStyles
-import GlobalStyles, {Container} from '@/AppStyles';
+import GlobalStyles, { Container } from '@/AppStyles';
 
 const App: FC = () => (
   <Container>
-    <AdviceCard />
     <GlobalStyles />
+    <AdviceCard />
   </Container>
 );
 
