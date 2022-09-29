@@ -7,7 +7,7 @@ interface StateType {
   data: AdviceType | null;
 }
 
-type HookReturnType = [StateType];
+type HookReturnType = [StateType, () => Promise<void>];
 
 export default function useRandomAdvice(): HookReturnType {
   const isMounted = useRef<boolean>(true);
@@ -16,6 +16,23 @@ export default function useRandomAdvice(): HookReturnType {
     loading: false,
     error: null,
   });
+
+  const getRandomAdviceOnClick = async (): Promise<void> => {
+    setValues((prevState) => ({
+      ...prevState,
+      loading: true,
+    }));
+    try {
+      const data = await AdviceService.getRandomAdvice();
+      setValues((prevState) => ({
+        ...prevState,
+        loading: false,
+        data,
+      }));
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +48,6 @@ export default function useRandomAdvice(): HookReturnType {
           loading: false,
           data,
         }));
-        console.log(data);
       } catch (e) {
         console.log(e);
       }
@@ -45,8 +61,8 @@ export default function useRandomAdvice(): HookReturnType {
 
     return () => {
       isMounted.current = false;
-    }
+    };
   }, []);
 
-  return [values];
+  return [values, getRandomAdviceOnClick];
 }
