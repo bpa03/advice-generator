@@ -1,5 +1,8 @@
 import { FC } from 'react';
+
+// Components
 import IconDice from '../Icons/IconDice';
+import Loader from '../Loader';
 
 // Hooks
 import useRandomAdvice from '@/hooks/useRandomAdvice';
@@ -20,7 +23,7 @@ const AdviceCard: FC = () => {
   const [{ data, loading }, getRandomAdvice] = useRandomAdvice();
 
   if (loading || !data) {
-    return <h1>Loading</h1>;
+    return <Loader />;
   }
 
   const { advice, id } = data.slip;
