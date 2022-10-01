@@ -1,12 +1,29 @@
-import styled from 'styled-components';
-import Divider from '@/assets/pattern-divider-mobile.svg';
+import styled, {keyframes} from 'styled-components';
+import DividerMobile from '@/assets/pattern-divider-mobile.svg';
+import DividerDesktop from '@/assets/pattern-divider-desktop.svg';
+
+export const FadeInAnimation = keyframes`
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;;
+  }
+`;
 
 export const Card = styled.article`
   width: calc(100% / 12 * 11);
+  animation: ${FadeInAnimation} .4s 1 ease;
   background-color: var(--dark-grayish-blue);
   font-size: 1rem;
   padding: 2em;
   border-radius: .6rem;
+
+  @media only screen and (min-width: 768px) {
+    width: calc(100% / 12 * 5);
+  }
 `;
 
 export const CardHeader = styled.div`
@@ -14,7 +31,7 @@ export const CardHeader = styled.div`
 `;
 
 export const CardBody = styled.div`
-  padding: 1em 0;
+  padding: .5em 0 1em 0;
   text-align: center;
 `;
 
@@ -39,11 +56,15 @@ export const AdviceText = styled.p`
 
 export const Separator = styled.div`
   display: block;
-  background-image: url(${Divider});
+  background-image: url(${DividerMobile});
   background-repeat: no-repeat;
   width: 100%;
   height: 1em;
   background-position: center;
+
+  @media only screen and (min-width: 768px) {
+    background-image: url(${DividerDesktop});
+  }
 `;
 
 export const DiceButton = styled.button`

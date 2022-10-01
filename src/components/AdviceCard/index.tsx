@@ -1,11 +1,8 @@
 import { FC } from 'react';
+import { AdviceType } from '@/services/advice';
 
 // Components
 import IconDice from '../Icons/IconDice';
-import Loader from '../Loader';
-
-// Hooks
-import useRandomAdvice from '@/hooks/useRandomAdvice';
 
 // Styles
 import {
@@ -19,13 +16,12 @@ import {
   DiceButton
 } from './styles';
 
-const AdviceCard: FC = () => {
-  const [{ data, loading }, getRandomAdvice] = useRandomAdvice();
+interface AdviceCardProps {
+  data: AdviceType;
+  getRandomAdvice: () => void;
+}
 
-  if (loading || !data) {
-    return <Loader />;
-  }
-
+const AdviceCard: FC<AdviceCardProps> = ({ data, getRandomAdvice }) => {
   const { advice, id } = data.slip;
   const formatedAdvice = `"${advice}"`;
 
